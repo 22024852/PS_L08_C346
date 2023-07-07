@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">PS_L08_C346</string>
+    <string name="Title">Song Title</string>
+    <string name="TitleInput">Enter song title here</string>
+    <string name="Singers">Singers</string>
+    <string name="SingersInput">Enter singers name here</string>
+    <string name="Year">Year</string>
+    <string name="yearInput">Enter year of release here</string>
+    <string name="Stars">Stars</string>
+
+</resources>
