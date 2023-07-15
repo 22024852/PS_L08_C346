@@ -17,7 +17,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "songs.db";
 
     private static final String TABLE_SONGS = "songs";
-    private static final String COLUMN_ID = "id";
+    private static final String COLUMN_ID = "_id";
     private static final String COLUMN_TITLE = "title";
     private static final String COLUMN_SINGERS = "singers";
     private static final String COLUMN_YEAR = "year";
@@ -58,7 +58,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 String singers = cursor.getString(2);
                 int year = cursor.getInt(3);
                 int stars = cursor.getInt(4);
-                Song obj = new Song(title, singers, year, stars);
+                Song obj = new Song(_id, title, singers, year, stars);
                 songs.add(obj);
             } while (cursor.moveToNext());
         }
@@ -66,6 +66,84 @@ public class DBHelper extends SQLiteOpenHelper {
         cursor.close();
         db.close();
         return songs;
+    }
+
+    //filtered years
+
+    public ArrayList<Song>getYearSong(String keyword){
+        ArrayList<Song> songs = new ArrayList<Song>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] columns = {COLUMN_ID,COLUMN_TITLE,COLUMN_SINGERS,COLUMN_YEAR,COLUMN_STARS};
+        String condition = COLUMN_YEAR + " Like ?";
+        String [] args = {"%" +keyword+"%"};
+        Cursor cursor = db.query(TABLE_SONGS, columns, condition, args, null,null,null,null);
+
+        if (cursor.moveToFirst()){
+            do {
+                int _id = cursor.getInt(0);
+                String title = cursor.getString(1);
+                String singers = cursor.getString(2);
+                int year = cursor.getInt(3);
+                int stars = cursor.getInt(4);
+                Song obj = new Song(_id, title, singers, year, stars);
+                songs.add(obj);
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        db.close();
+        return songs;
+
+    }
+
+    public ArrayList<Song> get5stars(){
+        ArrayList<Song> songs = new ArrayList<Song>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] columns = {COLUMN_ID,COLUMN_TITLE,COLUMN_SINGERS,COLUMN_YEAR,COLUMN_STARS};
+        String condition = COLUMN_STARS + " Like ?";
+        String [] args = {"%" +"5"+"%"};
+        Cursor cursor = db.query(TABLE_SONGS, columns, condition, args, null,null,null,null);
+
+        if (cursor.moveToFirst()){
+            do {
+                int _id = cursor.getInt(0);
+                String title = cursor.getString(1);
+                String singers = cursor.getString(2);
+                int year = cursor.getInt(3);
+                int stars = cursor.getInt(4);
+                Song obj = new Song(_id, title, singers, year, stars);
+                songs.add(obj);
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        db.close();
+        return songs;
+    }
+
+    public int updateSong(Song data){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_TITLE, data.getTitle());
+        values.put(COLUMN_SINGERS, data.getSinger());
+        values.put(COLUMN_YEAR,data.getYear());
+        values.put(COLUMN_STARS,data.getStar());
+        String condition = COLUMN_ID + "= ?";
+        String[] args = {String.valueOf(data.get_id())};
+        int result = db.update(TABLE_SONGS,values,condition,args);
+        db.close();
+        return result;
+    }
+
+    public int deleteSong(int id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String condition = COLUMN_ID+ "= ?";
+        String[] args = {String.valueOf(id)};
+        int result = db.delete(TABLE_SONGS, condition,args);
+        db.close();
+        return result;
     }
 
 
@@ -88,5 +166,6 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_SONGS);
         onCreate(db);
     }
+
 
 }

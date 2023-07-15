@@ -7,5 +7,11 @@
     <string name="Year">Year</string>
     <string name="yearInput">Enter year of release here</string>
     <string name="Stars">Stars</string>
-
+    <string name="STARS">SHOW ALL 5 STARS SONGS</string>
+    <string-array name="spinnerItems">
+        <item>All Songs</item>
+        <item>2021</item>
+        <item>2022</item>
+        <item>2023</item>
+    </string-array>
 </resources>

@@ -7,6 +7,18 @@
     android:orientation="vertical"
     tools:context=".MainActivity2">
 
+    <Button
+        android:id="@+id/btn5stars"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/STARS" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/spinnerItems" />
+
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"

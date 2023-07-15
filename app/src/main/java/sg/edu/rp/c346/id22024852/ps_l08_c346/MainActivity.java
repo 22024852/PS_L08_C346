@@ -27,8 +27,8 @@ public class MainActivity extends AppCompatActivity {
         singer = findViewById(R.id.editTextSingers);
         year = findViewById(R.id.editTextYear);
         Stars = findViewById(R.id.RadioGroupStars);
-        insert = findViewById(R.id.buttonInsert);
-        showlist = findViewById(R.id.btnshowList);
+        insert = findViewById(R.id.buttonEdit);
+        showlist = findViewById(R.id.btnDelete);
 
         insert.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
                     starsInp = 1;
                 } else if (Stars.getCheckedRadioButtonId() == R.id.radioButton2) {
                     starsInp = 2;
+                } else if (Stars.getCheckedRadioButtonId() == R.id.radioButton3){
                     starsInp = 3;
                 } else if (Stars.getCheckedRadioButtonId() == R.id.radioButton4) {
                     starsInp = 4;
@@ -68,4 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+
+
 }
