@@ -34,7 +34,10 @@ public class MainActivity2 extends AppCompatActivity {
         DBHelper db = new DBHelper(MainActivity2.this);
 
         ArrayList<Song> data = db.getSongs();
-        ArrayAdapter adapter = new ArrayAdapter<>(MainActivity2.this, android.R.layout.simple_list_item_1, data);
+        //ArrayAdapter adapter = new ArrayAdapter<>(MainActivity2.this, android.R.layout.simple_list_item_1, data);
+
+        CustomAdapter adapter;
+        adapter = new CustomAdapter(this, R.layout.rows,data);
         lv.setAdapter(adapter);
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {

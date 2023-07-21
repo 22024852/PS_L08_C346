@@ -61,5 +61,15 @@ public String getSinger() {
     public String toString() {
         return _id + "\n" + title + "\n" + singers + "\n" + year + "\n" + ("*".repeat(stars));
     }
+
+    public String getYearS() {
+    return year + " ";
+    }
+
+    public String getStarS() {
+    return "*".repeat(stars);
+    }
+
+
 }
 

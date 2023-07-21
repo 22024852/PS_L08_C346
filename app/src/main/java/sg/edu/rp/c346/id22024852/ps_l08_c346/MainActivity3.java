@@ -36,6 +36,7 @@ public class MainActivity3 extends AppCompatActivity {
         Song song = (Song) i.getSerializableExtra("song");
         title.setText(song.getTitle());
         singer.setText(song.getSinger());
+        year.setText(Integer.toString(song.getYear()));
 
 
         edit.setOnClickListener(new View.OnClickListener() {
